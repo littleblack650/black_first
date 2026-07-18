@@ -1,0 +1,63 @@
+#include "stm32f10x.h"
+#include "Delay.h"
+#include "OLED.h"
+#include "W25Q64.h"
+#include <stdlib.h>  // malloc/free
+
+// 图片地址数组
+const uint32_t IMAGE_ADDRESSES[4] = {
+    0x000000,  // 图片1地址
+    0x001000,  // 图片2地址
+    0x002000,  // 图片3地址
+    0x003000   // 图片4地址
+};
+
+int main(void)
+{
+    // 分配内存
+    uint8_t **imageBuffers = malloc(4 * sizeof(uint8_t*));
+    if (!imageBuffers) {
+        // 处理内存分配失败
+        while(1);
+    }
+    
+    for (int i = 0; i < 4; i++)
+    {
+        imageBuffers[i] = malloc(1024);
+        if (!imageBuffers[i]) {
+            // 处理内存分配失败
+            while(1);
+        }
+    }
+    
+    // 初始化
+    SystemInit();
+    Delay_Init();
+    OLED_Init();
+    OLED_Clear();
+    W25Q64_Init();
+    
+    // 读取所有图片
+    for (int i = 0; i < 4; i++)
+    {
+        W25Q64_ReadData(IMAGE_ADDRESSES[i], imageBuffers[i], 1024);
+    }
+    
+    // 主循环
+    while (1)
+    {
+        for (int i = 0; i < 4; i++)
+        {
+            OLED_Clear();
+            OLED_ShowPicture(0, 0, 128, 64, imageBuffers[i], 1);
+            OLED_Refresh();
+            Delay_ms(1000);
+        }
+    }
+    
+    // 释放内存（实际在嵌入式系统中可能不需要）
+    for (int i = 0; i < 4; i++) {
+        free(imageBuffers[i]);
+    }
+    free(imageBuffers);
+}

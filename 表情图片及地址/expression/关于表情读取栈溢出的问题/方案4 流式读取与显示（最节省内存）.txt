@@ -1,0 +1,56 @@
+#include "stm32f10x.h"
+#include "Delay.h"
+#include "OLED.h"
+#include "W25Q64.h"
+
+// 行缓冲区（128字节）
+__attribute__((section(".ccmram"))) uint8_t g_lineBuffer[128];
+
+// 图片地址数组
+const uint32_t IMAGE_ADDRESSES[4] = {
+    0x000000,  // 图片1地址
+    0x001000,  // 图片2地址
+    0x002000,  // 图片3地址
+    0x003000   // 图片4地址
+};
+
+void DisplayImageFromFlash(uint32_t address)
+{
+    OLED_Clear();
+    
+    // 图片有64行 (128x64像素)
+    for (int row = 0; row < 64; row++)
+    {
+        // 设置OLED行位置
+        OLED_SetCursor(row / 8, 0);
+        
+        // 读取一行数据 (128字节)
+        W25Q64_ReadData(address + row * 128, g_lineBuffer, 128);
+        
+        // 发送到OLED
+        for (int col = 0; col < 128; col++)
+        {
+            OLED_WriteData(g_lineBuffer[col]);
+        }
+    }
+}
+
+int main(void)
+{
+    // 初始化
+    SystemInit();
+    Delay_Init();
+    OLED_Init();
+    OLED_Clear();
+    W25Q64_Init();
+    
+    // 主循环
+    while (1)
+    {
+        for (int i = 0; i < 4; i++)
+        {
+            DisplayImageFromFlash(IMAGE_ADDRESSES[i]);
+            Delay_ms(1000);
+        }
+    }
+}

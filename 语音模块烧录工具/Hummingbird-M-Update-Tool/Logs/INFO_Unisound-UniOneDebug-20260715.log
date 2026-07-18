@@ -1,0 +1,5 @@
+Log file created at: 2026/07/15 19:42:59  PID: 15724
+Running on machine: LAPTOP-KD5F7LS6
+Log line format: [IWEF]mmdd hh:mm:ss.uuuuuu threadid file:line] msg
+I0715 19:42:59.359012 37744 code_page.cpp:268] in function[Unisound::OutputDebugPrintf], version: V1.0.1 
+ 
