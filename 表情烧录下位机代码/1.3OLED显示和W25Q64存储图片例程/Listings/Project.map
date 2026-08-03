@@ -1738,26 +1738,26 @@ Image component sizes
 
       Code (inc. data)   RO Data    RW Data    ZI Data      Debug   Object Name
 
-       638         48          0          8       4096       6540   burn_protocol.o
+       638         48          0          8       4096       6860   burn_protocol.o
          0          0          0          0          0       4496   core_cm3.o
-       316         26          0         12          0       2921   delay.o
-       180         60          0          0          0        571   main.o
-       100          6          0          0          0     204352   misc.o
-      1092         54       7472          0       1152       9078   oled.o
-       276         16          0          0          0       1746   spi.o
-        64         26        236          0       1536        844   startup_stm32f10x_md.o
-         0          0          0          0          0       1688   stm32f10x_adc.o
-       268          6          0          0          0      12598   stm32f10x_gpio.o
-        44          4          0          0          0       4454   stm32f10x_it.o
-       168         22          0         20          0      12621   stm32f10x_rcc.o
-        98          0          0          0          0      10714   stm32f10x_spi.o
-       344          6          0          0          0      12795   stm32f10x_usart.o
-       248         24          0          0          0      31649   system_stm32f10x.o
-       688        104          0         10       2560       6052   usart.o
-       608         48          0          0          0       4964   w25q64.o
+       316         26          0         12          0       3161   delay.o
+       180         60          0          0          0        611   main.o
+       100          6          0          0          0     204512   misc.o
+      1092         54       7472          0       1152       9678   oled.o
+       276         16          0          0          0       1866   spi.o
+        64         26        236          0       1536        864   startup_stm32f10x_md.o
+         0          0          0          0          0       1728   stm32f10x_adc.o
+       268          6          0          0          0      12878   stm32f10x_gpio.o
+        44          4          0          0          0       4854   stm32f10x_it.o
+       168         22          0         20          0      12821   stm32f10x_rcc.o
+        98          0          0          0          0      10994   stm32f10x_spi.o
+       344          6          0          0          0      13195   stm32f10x_usart.o
+       248         24          0          0          0      31929   system_stm32f10x.o
+       688        104          0         10       2560       6452   usart.o
+       608         48          0          0          0       5324   w25q64.o
 
     ----------------------------------------------------------------------
-      5146        450       7740         52       9344     328083   Object Totals
+      5146        450       7740         52       9344     332223   Object Totals
          0          0         32          0          0          0   (incl. Generated)
         14          0          0          2          0          0   (incl. Padding)
 
@@ -1834,8 +1834,8 @@ Image component sizes
 
       Code (inc. data)   RO Data    RW Data    ZI Data      Debug   
 
-      8188        646       7800         52       9444     325763   Grand Totals
-      8188        646       7800         52       9444     325763   ELF Image Totals
+      8188        646       7800         52       9444     329903   Grand Totals
+      8188        646       7800         52       9444     329903   ELF Image Totals
       8188        646       7800         52          0          0   ROM Totals
 
 ==============================================================================
